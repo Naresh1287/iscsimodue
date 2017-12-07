@@ -1,0 +1,30 @@
+#class iscsi {
+#       package { 'iscsi':
+#         name => $iscsiname,  
+#       ensure => present,
+#    }
+#}
+
+class iscsi (
+  $iscsiname   = $::iscsi::params::iscsiname,
+) inherits ::iscsi::params {
+          package { 'open-iscsi':
+         name => $iscsiname,
+       ensure => present,
+
+}
+
+file { 'initiatorname.iscsi':
+    path    => $conffile,
+    ensure  => file,
+    source  => $confsource,
+    notify  => Service['open-iscsi'],
+}
+        
+service { 'open-iscsi':
+    name          => $iscsiname,
+    hasrestart    => true,
+}
+
+}
+

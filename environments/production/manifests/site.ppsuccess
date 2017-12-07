@@ -1,0 +1,7 @@
+#hiera_include('classes', '')
+#node 'iscsi.agent1.com' {}
+
+
+node iscsi.agent1.com {
+   notify { hiera(motd::message): }
+}

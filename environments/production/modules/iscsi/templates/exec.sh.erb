@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#<%= @options_hash['test'] %> >> succ.txt
+
+#test=<%= @options_hash['test'] %>
+
+
+#set -x 
+
+ip=<%= @options_hash['nasboxip'] %> 
+l=<%= @options_hash['lun1'] %>
+m=<%= @options_hash['lun2'] %>
+n=<%= @options_hash['lun3'] %>
+
+
+
+
+
+
+iscsiadm -m session -o show |cut -d ' ' -f 4|grep $l &> /home/iscsi-agent1/script/sesout.txt
+iscsiadm -m session -o show |cut -d ' ' -f 4|grep $m &> /home/iscsi-agent1/script/sesout2.txt
+iscsiadm -m session -o show |cut -d ' ' -f 4|grep $n &> /home/iscsi-agent1/script/sesout3.txt
+
+
+a="`cat /home/iscsi-agent1/script/sesout.txt`"
+b="$l"
+
+c="`cat /home/iscsi-agent1/script/sesout2.txt`"
+d="$m"
+
+e="`cat /home/iscsi-agent1/script/sesout2.txt`"
+f="$n"
+
+
+if [ "$l" = "dont need one more lun" ]; then
+     echo "dont need any lun"
+elif [ "$a" != "$b" ]; then
+      echo "LUN is not logged in, logging in back"
+#      iscsiadm -m discovery -t sendtargets -p $ip
+      iscsiadm --mode node --targetname $l -p $ip --login
+else
+     echo "LUN is alrady logged in"
+fi
+
+if [ "$m" = "dont need one more lun" ]; then
+     echo "dont need 2nd lun"
+elif [ "$c" != "$d" ]; then
+      echo "LUN is not logged in, logging in back"
+#      iscsiadm -m discovery -t sendtargets -p $ip
+      iscsiadm --mode node --targetname $m -p $ip --login
+else
+     echo "LUN is alrady logged in"
+fi
+if [ "$n" = "dont need one more lun" ]; then
+     echo "dont need 3rd lun"
+elif [ "$e" != "$f" ]; then
+      echo "LUN is not logged in, logging in back"
+#      iscsiadm -m discovery -t sendtargets -p $ip
+      iscsiadm --mode node --targetname $n -p $ip --login
+else
+     echo "LUN is alrady logged in"
+fi
+ 
+
+

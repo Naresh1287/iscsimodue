@@ -1,0 +1,24 @@
+class iscsi {
+       package { 'iscsi':
+         name => $iscsiname,  
+       ensure => present,
+    }
+}
+
+class iscsi (
+  $apachename   = $::iscsi::params::iscsiname,
+) inherits ::iscsi::params {
+
+}
+
+file { 'configuration-file':
+    path    => $conffile,
+    ensure  => file,
+    source  => $confsource,
+    notify  => Service['apache-service'],
+}
+        
+service { 'apache-service':
+    name          => $apachename,
+    hasrestart    => true,
+}

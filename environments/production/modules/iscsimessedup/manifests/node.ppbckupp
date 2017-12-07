@@ -1,0 +1,13 @@
+class iscsi(
+
+Array $vhost,
+) {
+     include ::iscsi
+
+      $vhost.each |$vhost| {
+        ::iscsi::vhost { $vhost['fqdn']:
+        initiatornamee => $vhost['initiatornamee']
+
+}
+}
+

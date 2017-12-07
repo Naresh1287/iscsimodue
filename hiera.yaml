@@ -1,0 +1,80 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - "nodes/%{::fqdn}"
+  - "nodes/%{::trusted.certname}"
+#  - common
+
+:yaml:
+# datadir is empty here, so hiera uses its defaults:
+# - /etc/puppetlabs/code/environments/%{environment}/hieradata on *nix
+# - %CommonAppData%\PuppetLabs\code\environments\%{environment}\hieradata on Windows
+# When specifying a datadir, make sure the directory exists.
+  :datadir: /etc/puppetlabs/code/environments/%{environment}/hieradata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#:backends:
+#  - yaml
+
+
+#:hierarchy:
+#    - "nodes/%{facts.networking.hostname}"
+#    - "%{facts.os.family}"
+#    - common
+
+#:yaml:
+#  :datadir: /etc/puppetlabs/code/environments/production/hieradata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---
+#:backends:
+#  - yaml
+#
+#:logger: console
+
+#:hierarchy:
+#  - "environments/%{environment}/hieradata/%{project}/%{hostname}"
+#  - "environments/%{environment}/hieradata/%{project}/common_%{colo}_%{project}"
+#  - "environments/%{environment}/hieradata/%{project}/common_%{project}"
+#  - "environments/%{environment}/hieradata/common_%{colo}"
+#  - "environments/%{environment}/hieradata/common_%{environment}"
+#  - "hieradata/%{colo}"
+#  - "hieradata/global"
+#  - common
+
+#:yaml:
+#  :datadir: "/etc/puppetlabs/code"
+
+#:merge_behavior: deeper

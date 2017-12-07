@@ -1,0 +1,6 @@
+class iscsi {
+       package { 'open-iscsi'
+         ensure => present,
+    }
+}
+

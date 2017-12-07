@@ -1,0 +1,33 @@
+---
+
+
+iscsi::exec::config_file_templatee: 'iscsi/exec.sh.erb'
+iscsi::exec::options_hash:
+                      nasboxip: '192.168.1.28'
+                      lun1: 'iqn.2017-12.server.naresh.iscsi:disk1'
+                      lun2: 'iqn.2017-12.server.naresh.iscsi:disk5'
+                      lun3: '"dont need one more lun"'
+
+
+
+#iscsi::config::config_file_template: 'iscsi/initiatorname.iscsi.erb'
+#iscsi::config::options_hash:
+#      initiatorname: 'iqn.2017-12.com.agent1.com:node2'
+
+iscsi::config::config_file_template: 'iscsi/initiatorname.iscsi.erb'
+iscsi::config::main_conf_file: 'iscsi/iscsid.conf.erb'
+iscsi::config::options_hash:
+      initiatorname: 'iqn.2017-12.com.agent1.com:node2'
+      authmethod: 'CHAP'
+      username:   'test'
+      password:   'test'
+
+
+
+#iscsi::config::main_conf_file: 'iscsi/iscsid.conf.erb'
+#iscsi::config::options_hash:
+#      authmethod: 'working'
+#      username:   'working'
+#      password:   'working'
+
+
