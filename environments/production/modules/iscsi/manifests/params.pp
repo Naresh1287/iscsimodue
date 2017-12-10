@@ -18,15 +18,3 @@ class iscsi::params {
 }
 
 
-#     if $::osfamily == 'Ubuntu' {
-#               $iscsiname   =  'open-iscsi'
-#                $conffile    =  '/etc/iscsi/initiatorname.iscsi'
-#                $confsource  =  'puppet:///modules/iscsi/initiatorname.iscsi'
-#                $conffile1    =  '/etc/iscsi/iscsid.conf'
-#                $confsource1  =  'puppet:///modules/iscsi/iscsi.conf'
-#       } elseif $::osfamily ==  'RedHat' {
-#                $iscsiname = 'iscsi-initiator-utils'
-#        } else {
-#           print "This is not a supported distro."
-#  }
-#}
